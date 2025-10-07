@@ -33,3 +33,11 @@ variable "priv-avail-az" {
     type = string
   
 }
+
+#TFcars
+#aws_region  = "us-east-1"
+#vpc-cidr-block = "10.0.0.0/16"
+#pub-cidr-block = "10.0.1.0/24"
+#priv-cidr-block = "10.0.101.0/24"
+#pub-avail-az = "us-east-1a"
+#priv-avail-az = "us-east-1b"
