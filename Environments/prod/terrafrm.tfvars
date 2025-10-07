@@ -1,0 +1,18 @@
+#TFvars
+aws_region  = "us-east-2"
+vpc-cidr-block = "10.0.0.0/16"
+pub-cidr-block = "10.0.1.0/24"
+priv-cidr-block = "10.0.101.0/24"
+pub-avail-az = "us-east-2a"
+priv-avail-az = "us-east-2b"
+instance_type = "t2.micro"
+ami_id = "ami-0379821d182aac933"
+key-pair = "server"
+engine = "postgres"
+engine_version = "13.4"
+allocated_storage = 20
+instance_class = "db.t3.micro"
+storage_type = "gp2"
+identifier = "mydb"
+username = "admin"
+password = "admin123"
