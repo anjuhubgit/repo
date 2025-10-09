@@ -1,5 +1,5 @@
 module "networking" {
-    source = "C:/Users/a.mahesh.hiremath/Downloads/iac-cicd-main (1)/iac-cicd-main/modules/networking"
+    source = "../../modules/networking"
     vpc-cidr-block = var.vpc-cidr-block
     pub-cidr-block = var.pub-cidr-block
     priv-cidr-block = var.priv-cidr-block 
@@ -12,7 +12,7 @@ module "networking" {
 }
 
 module "Ec2" {
-    source = "C:/Users/a.mahesh.hiremath/Downloads/iac-cicd-main (1)/iac-cicd-main/modules/Ec2"
+    source = "../../modules/Ec2"
    instance_type = var.instance_type
     ami_id =  var.ami_id
     key-pair = var.key-pair
@@ -24,7 +24,7 @@ module "Ec2" {
 }
 
 module "Rds" {
-    source = "C:/Users/a.mahesh.hiremath/Downloads/iac-cicd-main (1)/iac-cicd-main/modules/Rds"
+    source = "../../modules/Rds"
     engine = var.engine
     engine_version = var.engine_version
     allocated_storage = var.allocated_storage
@@ -37,6 +37,6 @@ module "Rds" {
 }
 
 module "S3"{
-    source = "C:/Users/a.mahesh.hiremath/Downloads/iac-cicd-main (1)/iac-cicd-main/modules/S3"
+    source = "../../modules/S3"
     
 }
