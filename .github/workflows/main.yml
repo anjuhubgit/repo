@@ -44,3 +44,10 @@ jobs:
       - name: Terraform plan
         run:  terraform plan -no-color -out=tfplan > plan.txt
         #working-directory: ./environment/dev
+
+      - name: Upload Plan Artifact (Text file)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-text
+          path: ${{ env.TF_ROOT }}/plan.txt
+          retention-days: 1
