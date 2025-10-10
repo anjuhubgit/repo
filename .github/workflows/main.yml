@@ -7,11 +7,16 @@ on:
   pull_request:
     branches:
       - main
+env:
+  TF_root: './environment/dev'
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
     environment: dev
+    defaults : 
+      run: 
+        working-directory: ${{ env.TF_ROOT }}
      
     
     steps:
@@ -33,9 +38,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./environment/dev
+        #working-directory: ./environment/dev
         
 
       - name: Terraform plan
         run: terraform plan
-        working-directory: ./environment/dev
+        #working-directory: ./environment/dev
