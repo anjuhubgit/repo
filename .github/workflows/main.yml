@@ -42,5 +42,5 @@ jobs:
         
 
       - name: Terraform plan
-        run: terraform plan
+        run:  terraform plan -no-color -out=tfplan > plan.txt
         #working-directory: ./environment/dev
