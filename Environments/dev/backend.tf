@@ -1,7 +1,7 @@
   terraform {
   backend "s3" {
     bucket         = "myawsbuckethirem" # REPLACE with your S3 bucket name
-    key            = "./Environments/dev"
+    key            = "./Environments/dev/terraform.tfstate"
     region         = "us-east-2"
     encrypt        = true
     use_lockfile = true
@@ -10,4 +10,5 @@
 } 
 
   
+
 
