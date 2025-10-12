@@ -1,7 +1,7 @@
   terraform {
   backend "s3" {
     bucket         = "myawsbuckethirem" # REPLACE with your S3 bucket name
-    key            = "C:/Users/a.mahesh.hiremath/Downloads/iac-cicd-main (1)/iac-cicd-main/Environments/devterraform.tfstate"
+    key            = "./Environments/dev"
     region         = "us-east-2"
     encrypt        = true
     use_lockfile = true
@@ -10,3 +10,4 @@
 } 
 
   
+
