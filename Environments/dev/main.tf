@@ -38,5 +38,6 @@ module "Rds" {
 
 module "S3"{
     source = "../../modules/S3"
+    bucket = var.name
     
 }
