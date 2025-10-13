@@ -15,5 +15,4 @@ instance_class = "db.t3.micro"
 storage_type = "gp2"
 identifier = "mydb"
 name = "mybucket003"
-username = "anju"
-password = "admin123"
+
