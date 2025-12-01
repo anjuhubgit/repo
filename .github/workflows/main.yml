@@ -19,7 +19,7 @@ jobs:
      password: ${{ secrets.DOCKERHUB_TOKEN }}
 
   - name: Build Docker Image
-    run: docker build -t test:latest .
+    run: sudo docker build -t test:latest .
     #working-directory: ./cicd-react-application-main
 
   - name: push docker Image
