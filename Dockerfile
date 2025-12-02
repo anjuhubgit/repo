@@ -1,9 +1,9 @@
 FROM node:14 AS nodework
 WORKDIR /app
 COPY package.json .
-RUN npm install
+RUN sudo npm install
 COPY . .
-RUN npm run build
+RUN sudo npm run build
 
 FROM nginx
 WORKDIR /usr/share/nginx/html
