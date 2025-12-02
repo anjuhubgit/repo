@@ -24,15 +24,15 @@ jobs:
 
   - name: push docker Image
     run: |
-     docker tag test:latest anjuhubdocker/myimages:latest 
-     docker push anjuhubdocker/myimages:latest
+     sudo docker tag test:latest anjuhubdocker/myimages:latest 
+     sudo docker push anjuhubdocker/myimages:latest
 
   - name: Deploy container
     run: |
-     docker stop test || true
-     docker rm test || true
-     docker pull anjuhubdocker/myimages:latest
-     docker run -d --name test -p 8080:8080 anjuhubdocker/myimages:latest
+     sudo docker stop test || true
+     sudo docker rm test || true
+     sudo docker pull anjuhubdocker/myimages:latest
+     sudo docker run -d --name test -p 8080:8080 anjuhubdocker/myimages:latest
 
  
                        
