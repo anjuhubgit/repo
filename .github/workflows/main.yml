@@ -6,35 +6,29 @@ on:
 
 jobs: 
  build-and-run:
-  runs-on: self-hosted
+  runs-on: ubuntu-latest
 
   steps:
   - name: Checkout code
     uses: actions/checkout@v4
 
-  - name: Docker login
-    uses: docker/login-action@v3
+  - name: configure aws credentials
+    uses: aws-actions/configure-aws-credentials@v1
     with: 
-     username: ${{ secrets.DOCKERHUB_USERNAME }} 
-     password: ${{ secrets.DOCKERHUB_TOKEN }}
+     username: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+     password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #aws_region: us-east-1
 
-  - name: Build Docker Image
-    run: sudo docker build -t test:latest .
-    #working-directory: ./cicd-react-application-main
-
-  - name: push docker Image
-    run: |
-     sudo docker tag test:latest anjuhubdocker/myimages:latest 
-     sudo docker push anjuhubdocker/myimages:latest
-
-  - name: Deploy container
-    run: |
-     sudo docker stop test || true
-     sudo docker rm test || true
-     sudo docker pull anjuhubdocker/myimages:latest
-     sudo docker run -d --name test -p 8080:8080 anjuhubdocker/myimages:latest
-
- 
+  - name: Login to Amazon ECR
+    id: login-ecr
+    uses: aws-actions/amazon-ecr-login@v1
+    
+  - name: Build, Tag, and push the image to Amazon ECR
+    id: build-image
+    env:
+      ECR_REGISTRY: ${{steps.login-ecr.outputs.registry }}
+      ECR_REPOSITORY: imagerepo
+      IMAGE_TAG: latest
                        
 
    
