@@ -34,8 +34,16 @@ jobs:
       docker build -t test:latest .
       docker tag test:latest 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest 
       docker push 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
-      
 
+ 
+
+  - name: Deploy container
+    run: |
+      docker stop test || true
+      docker rm test || true
+      docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+      docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+     
    
      
     
