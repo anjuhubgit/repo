@@ -32,8 +32,8 @@ jobs:
       IMAGE_TAG: latest
     run:  |
       docker build -t test:latest .
-      docker tag test:latest anjuhubdocker/myimages:latest 
-      docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      docker tag test:latest 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest 
+      docker push 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
       
 
    
