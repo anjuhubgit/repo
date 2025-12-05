@@ -33,7 +33,7 @@ jobs:
     run:  |
       docker build -t test:latest .
       docker tag test:latest anjuhubdocker/myimages:latest 
-      docker push anjuhubdocker/myimages:latest
+      docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
 
    
