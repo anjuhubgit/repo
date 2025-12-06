@@ -24,26 +24,25 @@ jobs:
     id: login-ecr
     uses: aws-actions/amazon-ecr-login@v1
 
-  - name: Build, Tag, and push the image to Amazon ECR
+  - name: Build, tag, and push image to Amazon ECR
     id: build-image
     env:
-      ECR_REGISTRY: ${{steps.login-ecr.outputs.registry }}
-      ECR_REPOSITORY: imagerepo
-      IMAGE_TAG: latest
-    run:  |
-      aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo
-      sudo docker build -t test:latest .
-      sudo docker tag test:latest 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest 
-      sudo docker push 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
-
+       ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+       ECR_REPOSITORY: imagerepo
+       IMAGE_TAG: ${{ github.sha }}
+       AWS_REGION: ${{ secrets.REGION }}
+    run: |
+       docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+       aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+       docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
  
 
-  - name: Deploy container
-    run: |
-      sudo docker stop test || true
-      sudo docker rm test || true
-      sudo docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
-      sudo docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+  # - name: Deploy container
+  #   run: |
+  #     sudo docker stop test || true
+  #     sudo docker rm test || true
+  #     sudo docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+  #     sudo docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
      
    
      
