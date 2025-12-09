@@ -42,7 +42,7 @@ jobs:
     run:  |
       docker stop test || true
       docker rm test || true
-      docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+      docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest
       docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest
      
    
