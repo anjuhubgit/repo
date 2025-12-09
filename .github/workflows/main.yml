@@ -42,8 +42,9 @@ jobs:
     run:  |
       docker stop test || true
       docker rm test || true
-      docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest
+      docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest
+   #docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest
      
    
      
