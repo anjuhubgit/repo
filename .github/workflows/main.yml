@@ -37,13 +37,13 @@ jobs:
        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
  
 
-  # - name: Deploy container
+  - name: Deploy container
   #aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo
-  #   run: |
-  #     sudo docker stop test || true
-  #     sudo docker rm test || true
-  #     sudo docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
-  #     sudo docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+    run:  |
+      docker stop test || true
+      docker rm test || true
+      docker pull 087615957965.dkr.ecr.us-east-1.amazonaws.com/imagerepo:latest
+      docker run -d --name test -p 8080:8080 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo:latest
      
    
      
