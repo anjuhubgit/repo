@@ -1,4 +1,4 @@
-name: node js dockerization
+name: node js dockerizationn
 on: 
    push:
       branches: 
