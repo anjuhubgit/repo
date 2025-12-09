@@ -33,11 +33,12 @@ jobs:
        AWS_REGION: ${{ secrets.REGION }}
     run: |
        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-       aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo
+       aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 087615957965.dkr.ecr.us-east-1.amazonaws.com
        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
  
 
   # - name: Deploy container
+  #aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 087615957965.dkr.ecr.us-east-1.amazonaws.com/myimagerepo
   #   run: |
   #     sudo docker stop test || true
   #     sudo docker rm test || true
